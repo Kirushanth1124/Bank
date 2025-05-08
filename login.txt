@@ -1,7 +1,4 @@
-admin:admin:admin
-user:1234:userjk:123:user
-jk:2244:user
-jk:123:user
-jk:2244:user
-jk:1122:user
-jk:1234:user
+admin:admin123:admin
+jk:jk123:user
+
+jk:jk123:user

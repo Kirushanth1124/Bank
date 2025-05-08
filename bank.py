@@ -25,8 +25,8 @@ def append_login_credentials(username, password, role="user"):
 
 def login():
     print("\n===== Login =====")
-    username = input("Enter your username🫴: ")
-    password = input("Enter your password🫴: ")
+    username = input("Enter your username  🫴  : ")
+    password = input("Enter your password  🫴  : ")
 
     try:
         with open("login.txt", "r") as file:
@@ -37,10 +37,10 @@ def login():
                     if username == saved_user and password == saved_pass:
                         print(f"Login successful! Welcome {username}")
                         return role, username  
-            print("Invalid username or password👎.")
+            print("Please enter Correct username or password  👎 .")
             return None, None
     except FileNotFoundError:
-        print("Error: login.txt file not found")
+        print("login.txt file not found")
         return None, None
         
 def Adminmenu():
@@ -71,7 +71,7 @@ def Adminmenu():
         elif choice == "7":
             Change_Password()
         elif choice == "8":
-            print("Thank you for using our admin services🙏.")
+            print("Thank you for using our admin services  🙏 .")
             break
         else:
             print("Invalid choice.")
@@ -102,15 +102,15 @@ def usermenu():
         elif choice == "6":
             Change_Password()
         elif choice == "7":
-            print("Thank you for using our service🙏.")
+            print("Thank you for using our service  🙏 .")
             break
         else:
             print("Invalid choice.")
 
 def Create_Account():
-    name = input("Enter Account Holder Name🫴: ")
-    user_name = input("Enter Username🫴: ")
-    user_password = input("Enter Password🔑: ")
+    name = input("Enter Account Holder Name  🫴 : ")
+    user_name = input("Enter Username  🫴 : ")
+    user_password = input("Enter Password  🔑 : ")
 
     while True:
         try:
@@ -146,8 +146,8 @@ def append_login_credentials(username, password, role="user"):
         file.write(f"{username}:{password}:{role}\n")
 
 def Deposit_Money():
-    
-    account_number = input("Enter your Account Number🔢: ")
+     
+    account_number = input("Enter your Account Number 🔢 : ")
     if account_number not in Accounts:
         print("Account not found.")
         return
@@ -164,7 +164,7 @@ def Deposit_Money():
 
 def Withdraw_Money():
     
-    account_number = input("Enter your Account Number🔢: ")
+    account_number = input("Enter your Account Number  🔢 : ")
     if  account_number not in Accounts:
         print("Account not found.")
         return
@@ -184,7 +184,7 @@ def Withdraw_Money():
 
 def Check_Balance():
     
-    account_number = input("Enter your Account Number🔢: ")
+    account_number = input("Enter your Account Number  🔢 : ")
     if account_number not in Accounts:
         print("Account not found.")
         return
@@ -193,7 +193,7 @@ def Check_Balance():
 
 def Transaction_History():
     
-    account_number = input("Enter your Account Number🔢: ")
+    account_number = input("Enter your Account Number  🔢 : ")
     if account_number not in Accounts:
         print("Account not found.")
         return
@@ -208,7 +208,7 @@ def Transaction_History():
 
 def Transfer_Money():
     
-    from_acc = input("Enter your Account Number🔢: ")
+    from_acc = input("Enter your Account Number  🔢 : ")
     if from_acc not in Accounts:
         print("Sender account not found.")
         return
@@ -230,14 +230,14 @@ def Transfer_Money():
         Accounts[to_acc]["Transactions"].append(f"Received ${amount:.2f} from {from_acc}")
         print(f"Transfer successful. ${amount:.2f} transferred from {from_acc} to {to_acc}")
     except ValueError:
-        print("Invalid amount👎.")
+        print("Invalid amount  👎 .")
 
 
 def Change_Password():
     print("\n===== Change Password =====")
 
-    USERNAME = input("Enter the Username🫴: ")  
-    Old_Password = input("Enter the Current Password🔑: ")
+    USERNAME = input("Enter the Username  🫴 : ")  
+    Old_Password = input("Enter the Current Password   🔑 : ")
 
     updated_lines = []
     found = False  
@@ -253,7 +253,7 @@ def Change_Password():
                 
                 saved_user, saved_pass, role = parts
                 if USERNAME == saved_user and Old_Password == saved_pass:
-                    New_password = input("Enter the New password🔑: ") 
+                    New_password = input("Enter the New password  🔑 : ") 
                     updated_lines.append(f"{USERNAME}:{New_password}:{role}\n")
                     found = True
                 else:
@@ -262,18 +262,18 @@ def Change_Password():
         if found:
             with open("login.txt", 'w') as file:
                 file.writelines(updated_lines)
-                print("Password Changed Successfully👍")
+                print("Password Changed Successfully  👍 ")
         else:
-            print("Incorrect username or password😠.") 
+            print("Incorrect username or password  😠 .") 
 
     except FileNotFoundError:
-        print("Error: login.txt file not found👎")
+        print("Error: login.txt file not found  👎 ")
 
 
 def main():
     role, username = login()
     if role is None:
-        print("Login failed. Exiting 🙋‍♂️.")
+        print("Login failed. Exiting  🙋‍♂️ .")
         return
     
     if role == "admin":
@@ -283,55 +283,3 @@ def main():
 
 
 main()
-
-
-
-
-
-
-# def login():
-    
-#     print("\n===== Welcome to the Banking System Login =====")
-#     username = input("Enter Username: ")
-#     password = input("Enter Password: ")
-    
-    
-#     try:
-#         with open("login.txt", "r") as file:
-#          for line in file:
-#             parts = line.strip().split(':')
-#             if len(parts) == 3:
-#                 saved_user, saved_pass, role = parts
-#                 username==saved_user and password==saved_pass 
-
-#             else:
-#                 print(f"Skipping invalid line: {line}")
-#                 if role == "admin":
-#                     Adminmenu()
-#                 elif role == "user":
-#                     usermenu()
-#                 else:
-#                     print("Unknown role. Access denied.")
-#                 return  
-#             print("Invalid username or password. Please try again.")
-#     except FileNotFoundError:
-#         print("Error: login.txt file not found.")
-
-
-'''def authenticate_user():
-    print("\n===== Login =====")
-    username = input("Username: ")
-    password = getpass.getpass("Password: ")
-
-    try:
-        with open("login.txt", 'r') as file:
-            for line in file:
-                user, passw, role = line.strip().split(":")
-                if username == user and password == passw:
-                    print(f"Login successful! Welcome, {username}.")
-                    return role, username
-            print("Incorrect username or password.")
-            return None, None
-    except FileNotFoundError:
-        print("Error: login.txt file not found")
-        return None, None'''

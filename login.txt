@@ -1,5 +1,9 @@
-admin:admin123:admin
-jk:jk123:user
+admin---admin123---admin
+jk---jk123---user
 
-jk:jk123:user
-Ram123:2244:user
+jk---jk123---user
+Ram123---2244---user
+Lakshi24---112416---user
+dhanush---112416---user
+tic---123---user
+AR---1122---user

@@ -1,3 +1,5 @@
+# Wellcome to Our Bnaking System #
+
 import random
 from datetime import datetime
 
@@ -31,6 +33,8 @@ def append_login_credentials(username, password, role="user"):
     with open("login.txt", "a") as file:
         file.write(f"{username}---{password}---{role}\n")
 
+# Admin & Customer Login System #
+
 def login():
     
     print("\n::::::===== Login =====::::::\n")
@@ -51,6 +55,8 @@ def login():
     except FileNotFoundError:
         print("❌ login.txt file not found")
         return None, None
+
+# Our Admin Banking Menu  #
 
 def Adminmenu():
     
@@ -86,6 +92,8 @@ def Adminmenu():
         else:
             print("\n❌ Invalid choice.\n")
 
+# Our Customer Banking Menu  #
+
 def usermenu():
     
     while True:
@@ -117,11 +125,29 @@ def usermenu():
         else:
             print("\n❌ Invalid choice.\n")
 
+
+# Our New Customer Create An Account system  #
+
 def Create_Account():
-    
-    name = input("* Enter Account Holder Name  🫴 : ")
-    user_name = input("* Enter Username  🫴 : ")
-    user_password = input("* Enter Password  🔑 : ")
+    name = input("\n* Enter Account Holder Name  🫴 : ")
+    Age = input("* Enter Your Age  🫴 : ")
+    Date_of_birth=input(" *Enter the Date OF birth  🫴 :")
+    while True:
+        Identity_No = input("* Enter the NIC number  🫴 : ")
+        if Identity_No.isdigit() and len(Identity_No) == 12:
+            break
+        else:
+            print("❌ Invalid input. Please enter exactly 12 digits.")
+
+    while True:
+        Phone_Number = input("* Enter the Phone No  🫴  : ")
+        if Phone_Number.isdigit() and len(Phone_Number) == 10:
+            break
+        else:
+            print(" ❌ Invalid input. Please enter exactly 10 digits.")
+
+    user_name = input("* Enter Username 🫴 : ")
+    user_password = input("* Enter Password 🔑 : ")
 
     while True:
         try:
@@ -146,7 +172,12 @@ def Create_Account():
     }
 
     save_account_to_file(account_number, name, user_name, user_password, initial_balance)
-    append_login_credentials(user_name, user_password)  
+    append_login_credentials(user_name, user_password)
+
+    print(f"\n✅ Account created successfully! Your Account Number is: {account_number}")
+ 
+
+#Our User Can Deposit on there Account #
 
 def Deposit_Money():
     
@@ -163,9 +194,11 @@ def Deposit_Money():
         Accounts[account_number]["Balance"] += amount
         Accounts[account_number]["Transactions"].append(f"Deposited ${amount:.2f}")
         
-        print(f"✅ \nDeposited successfully. New Balance: ${Accounts[account_number]['Balance']:.2f}\n")
+        print(f"\n✅ Deposited successfully. New Balance: ${Accounts[account_number]['Balance']:.2f}\n")
     except ValueError:
         print("\n❌ Invalid amount.\n")
+
+# if you Want Withdraw Money You Can Use this Code #
 
 def Withdraw_Money():
     
@@ -188,6 +221,8 @@ def Withdraw_Money():
     except ValueError:
         print("\n❌ Invalid amount.\n")
 
+# If you Want view your Account Balance Details So you can Use this Code #
+
 def Check_Balance():
     
     account_number = input("* Enter your Account Number  🔢 : ")
@@ -195,6 +230,8 @@ def Check_Balance():
         print("\n❌ Account not found.\n")
         return
     print(f"\n* Current Balance: ${Accounts[account_number]['Balance']:.2f}\n")
+
+# If you preview your Account Money Transaction History Certainly you Can view #
 
 def Transaction_History():
     
@@ -206,10 +243,15 @@ def Transaction_History():
     if not Transactions:
         print("❌No transactions found.")
         return
-    print("* Transaction History:")
+    print("\n* Transaction History:")
     for t in Transactions:
         now = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
         print(f"\n{now}-- {t}")
+        print(f"\nYour Account Balance : {Accounts[account_number]["Balance"]} ")
+
+
+# If you try tranfer Money To Another Account Certainly You can Did #
+
 
 def Transfer_Money():
     
@@ -229,13 +271,20 @@ def Transfer_Money():
         if amount > Accounts[from_acc]["Balance"]:
             print("\nInsufficient balance.\n")
             return
+
+                
         Accounts[from_acc]["Balance"] -= amount
         Accounts[to_acc]["Balance"] += amount
         Accounts[from_acc]["Transactions"].append(f"Transferred ${amount:.2f} to {to_acc}")
         Accounts[to_acc]["Transactions"].append(f"Received ${amount:.2f} from {from_acc}")
-        print(f"Transfer successful. ${amount:.2f} transferred from {from_acc} to {to_acc}")
+        
+
+        print(f"\n 😁 Transfer successful. ${amount:.2f} transferred from {from_acc} to {to_acc} **** And Your Acc Balance : {Accounts[from_acc]["Balance"]}")
+    
     except ValueError:
         print("\n🚫 Invalid amount  👎 .\n")
+
+# If you Want Replace Or Re correct Your Password you can do It #
 
 def Change_Password():
     
@@ -269,6 +318,8 @@ def Change_Password():
 
     except FileNotFoundError:
         print("🚫 Error: login.txt file not found  👎 ")
+
+
 
 def main():
     

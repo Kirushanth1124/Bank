@@ -36,10 +36,28 @@ def append_login_credentials(username, password, role="user"):
 # Admin & Customer Login System #
 
 def login():
+    correct_Username="unicom"
+    correct_Password="123"
+    max_attempts=3
+    attempt=0
+
+    while attempt < max_attempts:
+        user_name=input("Enter the Username: ")
+        Password=input("Enter the Password: ")
+        
     
     print("\n::::::===== Login =====::::::\n")
     username = input("* Enter your username  🫴  : ")
     password = input("* Enter your password  🫴  : ")
+
+ correct_Username==user_name and correct_Password=password
+    
+        if attempt += 1:
+            print("Invalid username or password")
+            return
+        elif attempt==max_attemts:
+            print("Login Successfully")
+            break
 
     try:
         with open("login.txt", "r") as file:
@@ -180,7 +198,8 @@ def Create_Account():
 #Our User Can Deposit on there Account #
 
 def Deposit_Money():
-    
+
+
     account_number = input("* Enter your Account Number  🔢 : ")
 
     if account_number not in Accounts:
@@ -188,9 +207,17 @@ def Deposit_Money():
         return
     try:
         amount = float(input("* Enter amount to deposit: "))
-        if amount <= 0:
-            print("Amount must be positive.")
+        if  amount < 0:
+            print("Error: Deposit amount cannot be negative.")
             return
+        elif amount <= 0:
+            print("Error: Deposit amount must be positive.")
+            return
+        elif amount > 0:
+            Accounts[account_number]["Balance"] += amount
+            print("Deposit Success fully")
+            break
+               
         Accounts[account_number]["Balance"] += amount
         Accounts[account_number]["Transactions"].append(f"Deposited ${amount:.2f}")
         
@@ -243,7 +270,7 @@ def Transaction_History():
     if not Transactions:
         print("❌No transactions found.")
         return
-    print("\n* Transaction History:")
+    print("\n* Total transactions:")
     for t in Transactions:
         now = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
         print(f"\n{now}-- {t}")
@@ -335,5 +362,8 @@ def main():
         usermenu()
 
 main()
+                           
+    
+
 
 
